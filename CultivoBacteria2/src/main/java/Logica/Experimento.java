@@ -6,16 +6,17 @@ import java.util.List;
 
 public class Experimento implements Serializable {
     private List<PoblacionBacterias> poblaciones;
-    public static final int DURACION_EXPERIMENTO = 30; // Duración del experimento en días
+    private int duracionExperimento;
 
 
     public Experimento() {
         this.poblaciones = new ArrayList<>();
+        this.duracionExperimento = duracionExperimento;
     }
 
     public void agregarPoblacion(PoblacionBacterias poblacion) {
-        if (poblacion.getDuracion() != DURACION_EXPERIMENTO) {
-            throw new IllegalArgumentException("La duración de la población debe ser de " + DURACION_EXPERIMENTO + " días.");
+        if (poblacion.getDuracion() != duracionExperimento) {
+            throw new IllegalArgumentException("La duración de la población debe ser de " + duracionExperimento + " días.");
         }
         this.poblaciones.add(poblacion);
     }
