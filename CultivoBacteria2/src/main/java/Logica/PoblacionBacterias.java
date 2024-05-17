@@ -27,11 +27,12 @@ public class PoblacionBacterias implements Serializable {
         this.numeroInicialBacterias = numeroInicialBacterias;
         this.temperatura = temperatura;
         this.condicionesLuminosidad = condicionesLuminosidad;
-        this.dosisComidaInicial = dosisComidaInicial;
+        this.dosisComidaInicial = dosisComidaInicial * 1000;
         this.diaIncremento = diaIncremento;
-        this.dosisComidaDiaIncremento = dosisComidaDiaIncremento;
-        this.dosisComidaFinal = dosisComidaFinal;
-        this.dosisComida = calcularDosisComida();    }
+        this.dosisComidaDiaIncremento = dosisComidaDiaIncremento * 1000;
+        this.dosisComidaFinal = dosisComidaFinal * 1000;
+        this.dosisComida = calcularDosisComida();
+    }
 
     public String getNombre() {
         return nombre;
