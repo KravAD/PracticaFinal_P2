@@ -14,6 +14,10 @@ public class PoblacionBacterias implements Serializable {
     private int numeroInicialBacterias;
     private int temperatura;
     private String condicionesLuminosidad;
+    private int dosisComidaInicial;
+    private int diaIncremento;
+    private int dosisComidaDiaIncremento;
+    private int dosisComidaFinal;
     private List<Integer> dosisComida;
 
     public PoblacionBacterias(String nombre, String fechaInicio, String fechaFin, int numeroInicialBacterias, int temperatura, String condicionesLuminosidad, int dosisComidaInicial, int diaIncremento, int dosisComidaDiaIncremento, int dosisComidaFinal) {
@@ -23,8 +27,11 @@ public class PoblacionBacterias implements Serializable {
         this.numeroInicialBacterias = numeroInicialBacterias;
         this.temperatura = temperatura;
         this.condicionesLuminosidad = condicionesLuminosidad;
-        this.dosisComida = calcularDosisComida(dosisComidaInicial, diaIncremento, dosisComidaDiaIncremento, dosisComidaFinal);
-    }
+        this.dosisComidaInicial = dosisComidaInicial;
+        this.diaIncremento = diaIncremento;
+        this.dosisComidaDiaIncremento = dosisComidaDiaIncremento;
+        this.dosisComidaFinal = dosisComidaFinal;
+        this.dosisComida = calcularDosisComida();    }
 
     public String getNombre() {
         return nombre;
@@ -54,7 +61,7 @@ public class PoblacionBacterias implements Serializable {
         return dosisComida;
     }
 
-    private List<Integer> calcularDosisComida(int dosisComidaInicial, int diaIncremento, int dosisComidaDiaIncremento, int dosisComidaFinal) {
+    private List<Integer> calcularDosisComida() {
         List<Integer> dosisComida = new ArrayList<>();
         int incremento = (dosisComidaDiaIncremento - dosisComidaInicial) / diaIncremento;
         int decremento = (dosisComidaDiaIncremento - dosisComidaFinal) / (30 - diaIncremento);
@@ -69,6 +76,7 @@ public class PoblacionBacterias implements Serializable {
 
         return dosisComida;
     }
+
     public int getDuracion() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate inicio = LocalDate.parse(fechaInicio, formatter);
