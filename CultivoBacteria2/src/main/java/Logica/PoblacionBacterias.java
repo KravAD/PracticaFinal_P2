@@ -72,6 +72,11 @@ public class PoblacionBacterias implements Serializable {
         this.estrategiaComida = estrategiaComida;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
     private List<Integer> calcularDosisComida() {
         return estrategiaComida.calcularDosisComida(dosisComidaInicial, diaIncremento, dosisComidaDiaIncremento, dosisComidaFinal);
     }
