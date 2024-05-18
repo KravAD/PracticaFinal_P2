@@ -1,11 +1,17 @@
 package Montecarlo;
 
+import java.util.Random;
+
 public class Bacteria {
     private int comidaIngerida;
     private Celda celdaActual;
 
     public Bacteria(){
         this.comidaIngerida = comidaIngerida;
+    }
+    public int generarNumeroAleatorio() {
+        Random rand = new Random();
+        return rand.nextInt(101);
     }
 
     public void mover(){
