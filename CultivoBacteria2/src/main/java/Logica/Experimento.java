@@ -9,7 +9,7 @@ public class Experimento implements Serializable {
     private int duracionExperimento;
     private EstrategiaComida estrategiaComida;
 
-    public Experimento(EstrategiaComida estrategiaComida) {
+    public Experimento(EstrategiaComida estrategiaComida, int duracionExperimento){
         this.poblaciones = new ArrayList<>();
         this.duracionExperimento = duracionExperimento;
         this.estrategiaComida = estrategiaComida;

@@ -20,6 +20,7 @@ public class PoblacionBacterias implements Serializable {
     private int dosisComidaFinal;
     private List<Integer> dosisComida;
     private EstrategiaComida estrategiaComida;
+    private int duracionExperimento;
 
 
     public PoblacionBacterias(String nombre, String fechaInicio, String fechaFin, int numeroInicialBacterias, int temperatura, String condicionesLuminosidad, int dosisComidaInicial, int diaIncremento, int dosisComidaDiaIncremento, int dosisComidaFinal) {
@@ -87,9 +88,12 @@ public class PoblacionBacterias implements Serializable {
     }
 
     public int getDuracion() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate inicio = LocalDate.parse(fechaInicio, formatter);
-        LocalDate fin = LocalDate.parse(fechaFin, formatter);
-        return (int) ChronoUnit.DAYS.between(inicio, fin);
+        if (fechaInicio != null && fechaFin != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate inicio = LocalDate.parse(fechaInicio, formatter);
+            LocalDate fin = LocalDate.parse(fechaFin, formatter);
+            this.duracionExperimento = (int) ChronoUnit.DAYS.between(inicio, fin) + 1;
+        }
+        return duracionExperimento;
     }
 }

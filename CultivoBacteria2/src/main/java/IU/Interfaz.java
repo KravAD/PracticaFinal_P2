@@ -52,7 +52,11 @@ public class Interfaz extends JFrame {
             String estrategiaSeleccionada = (String) JOptionPane.showInputDialog(null, "Selecciona una estrategia de comida:", "Creación de Experimento", JOptionPane.QUESTION_MESSAGE, null, estrategiasComida.keySet().toArray(), estrategiasComida.keySet().toArray()[0]);
             EstrategiaComida estrategiaComida = estrategiasComida.get(estrategiaSeleccionada);
 
-            Experimento experimento = new Experimento(estrategiaComida);
+
+            String duracionExperimento = JOptionPane.showInputDialog("Introduce la duración del experimento:");
+            int duracion = Integer.parseInt(duracionExperimento);
+
+            Experimento experimento = new Experimento(estrategiaComida, duracion);
 
             gestor.crearExperimento(experimento);
 
