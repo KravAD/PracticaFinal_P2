@@ -19,6 +19,8 @@ public class PoblacionBacterias implements Serializable {
     private int dosisComidaDiaIncremento;
     private int dosisComidaFinal;
     private List<Integer> dosisComida;
+    private EstrategiaComida estrategiaComida;
+
 
     public PoblacionBacterias(String nombre, String fechaInicio, String fechaFin, int numeroInicialBacterias, int temperatura, String condicionesLuminosidad, int dosisComidaInicial, int diaIncremento, int dosisComidaDiaIncremento, int dosisComidaFinal) {
         this.nombre = nombre;
@@ -32,6 +34,8 @@ public class PoblacionBacterias implements Serializable {
         this.dosisComidaDiaIncremento = dosisComidaDiaIncremento * 1000;
         this.dosisComidaFinal = dosisComidaFinal * 1000;
         this.dosisComida = calcularDosisComida();
+        this.estrategiaComida = estrategiaComida;
+
     }
 
     public String getNombre() {
@@ -60,6 +64,10 @@ public class PoblacionBacterias implements Serializable {
 
     public List<Integer> getDosisComida() {
         return dosisComida;
+    }
+
+    public void setEstrategiaComida(EstrategiaComida estrategiaComida) {
+        this.estrategiaComida = estrategiaComida;
     }
 
     private List<Integer> calcularDosisComida() {
