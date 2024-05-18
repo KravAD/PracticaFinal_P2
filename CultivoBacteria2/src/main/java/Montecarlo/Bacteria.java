@@ -9,13 +9,49 @@ public class Bacteria {
     public Bacteria(){
         this.comidaIngerida = comidaIngerida;
     }
+
+    public int getComidaIngerida() {
+        return comidaIngerida;
+    }
+
+    public void setComidaIngerida(int comidaIngerida) {
+        this.comidaIngerida = comidaIngerida;
+    }
+
+    public Celda getCeldaActual() {
+        return celdaActual;
+    }
+
+    public void setCeldaActual(Celda celdaActual) {
+        this.celdaActual = celdaActual;
+    }
+
     public int generarNumeroAleatorio() {
         Random rand = new Random();
         return rand.nextInt(101);
     }
 
     public void mover(){
+        int numeroAleatorio = generarNumeroAleatorio();
+        int direccion = -1;
 
+        if (celdaActual.getComida() >= 100) {
+            if (numeroAleatorio >= 60 && numeroAleatorio < 100) {
+                direccion = (numeroAleatorio - 60) / 5;
+            }
+        } else if (celdaActual.getComida() > 9) {
+            if (numeroAleatorio >= 20 && numeroAleatorio < 100) {
+                direccion = (numeroAleatorio - 20) / 10;
+            }
+        } else {
+            if (numeroAleatorio >= 60 && numeroAleatorio < 100) {
+                direccion = (numeroAleatorio - 60) / 5;
+            }
+        }
+
+        if (direccion != -1) {
+            celdaActual.moverBacteria(this, direccion);
+        }
     }
     public void comer(){
         int comidaDisponible = celdaActual.getComida();
