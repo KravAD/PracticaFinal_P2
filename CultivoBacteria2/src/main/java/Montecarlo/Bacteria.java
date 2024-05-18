@@ -6,8 +6,10 @@ public class Bacteria {
     private int comidaIngerida;
     private Celda celdaActual;
 
-    public Bacteria(){
+    public Bacteria(Celda celdaActual){
         this.comidaIngerida = comidaIngerida;
+        this.celdaActual = celdaActual;
+
     }
 
     public int getComidaIngerida() {
@@ -66,15 +68,17 @@ public class Bacteria {
     public void reproducir(){
         if (comidaIngerida >= 150) {
             for (int i = 0; i < 3; i++) {
-                celdaActual.getBacterias().add(new Bacteria());
+                celdaActual.getBacterias().add(new Bacteria(celdaActual));
             }
         } else if (comidaIngerida >= 100) {
             for (int i = 0; i < 2; i++) {
-                celdaActual.getBacterias().add(new Bacteria());
+                celdaActual.getBacterias().add(new Bacteria(celdaActual));
             }
         } else if (comidaIngerida >= 50) {
-            celdaActual.getBacterias().add(new Bacteria());
+            celdaActual.getBacterias().add(new Bacteria(celdaActual));
         }
+        comidaIngerida = 0;
     }
-
 }
+
+
