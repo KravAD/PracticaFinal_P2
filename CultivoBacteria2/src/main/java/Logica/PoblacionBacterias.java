@@ -23,7 +23,7 @@ public class PoblacionBacterias implements Serializable {
     private int duracionExperimento;
 
 
-    public PoblacionBacterias(String nombre, String fechaInicio, String fechaFin, int numeroInicialBacterias, int temperatura, String condicionesLuminosidad, int dosisComidaInicial, int diaIncremento, int dosisComidaDiaIncremento, int dosisComidaFinal) {
+    public PoblacionBacterias(String nombre, String fechaInicio, String fechaFin, int numeroInicialBacterias, int temperatura, String condicionesLuminosidad, int dosisComidaInicial, int diaIncremento, int dosisComidaDiaIncremento, int dosisComidaFinal, EstrategiaComida estrategiaComida) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -34,8 +34,9 @@ public class PoblacionBacterias implements Serializable {
         this.diaIncremento = diaIncremento;
         this.dosisComidaDiaIncremento = dosisComidaDiaIncremento * 1000;
         this.dosisComidaFinal = dosisComidaFinal * 1000;
-        this.dosisComida = calcularDosisComida();
         this.estrategiaComida = estrategiaComida;
+        this.dosisComida = calcularDosisComida();
+
 
     }
 
@@ -72,19 +73,7 @@ public class PoblacionBacterias implements Serializable {
     }
 
     private List<Integer> calcularDosisComida() {
-        List<Integer> dosisComida = new ArrayList<>();
-        int incremento = (dosisComidaDiaIncremento - dosisComidaInicial) / diaIncremento;
-        int decremento = (dosisComidaDiaIncremento - dosisComidaFinal) / (30 - diaIncremento);
-
-        for (int i = 0; i < 30; i++) {
-            if (i < diaIncremento) {
-                dosisComida.add(dosisComidaInicial + incremento * i);
-            } else {
-                dosisComida.add(dosisComidaDiaIncremento - decremento * (i - diaIncremento));
-            }
-        }
-
-        return dosisComida;
+        return estrategiaComida.calcularDosisComida(dosisComidaInicial, diaIncremento, dosisComidaDiaIncremento, dosisComidaFinal);
     }
 
     public int getDuracion() {

@@ -1,4 +1,5 @@
 package IU;
+import Logica.*;
 import Logica.GestorExperimentos;
 import Logica.PoblacionBacterias;
 
@@ -28,6 +29,8 @@ class ExperimentoFrame extends JFrame {
     private JLabel diaIncrementoLabel = new JLabel("Día de incremento:");
     private JTextField dosisComidaDiaIncrementoField = new JTextField(5);
     private JLabel dosisComidaDiaIncrementoLabel = new JLabel("Dosis de comida en el día de incremento:");
+    private JComboBox<String> estrategiaComidaComboBox;
+
 
     private ExperimentoLista experimentoLista;
 
@@ -66,7 +69,26 @@ class ExperimentoFrame extends JFrame {
 
         experimentoLista = new ExperimentoLista(gestor);
 
+        estrategiaComidaComboBox = new JComboBox<>(new String[]{"Constante", "Lineal", "Alternante"});
+        fieldPanel.add(new JLabel("Estrategia de Comida:"));
+        fieldPanel.add(estrategiaComidaComboBox);
+
         createPopulationButton.addActionListener(e -> {
+            EstrategiaComida estrategiaComida;
+            String estrategiaSeleccionada = (String) estrategiaComidaComboBox.getSelectedItem();
+            switch (estrategiaSeleccionada) {
+                case "Constante":
+                    estrategiaComida = new EstrategiaComidaConstante();
+                    break;
+                case "Lineal":
+                    estrategiaComida = new EstrategiaComidaLineal();
+                    break;
+                case "Alternante":
+                    estrategiaComida = new EstrategiaComidaAlternante();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Estrategia de comida no reconocida: " + estrategiaSeleccionada);
+            }
             PoblacionBacterias poblacion = new PoblacionBacterias(
                     nombreField.getText(),
                     fechaInicioField.getText(),
@@ -77,7 +99,8 @@ class ExperimentoFrame extends JFrame {
                     Integer.parseInt(dosisComidaInicialField.getText()),
                     Integer.parseInt(diaIncrementoField.getText()),
                     Integer.parseInt(dosisComidaDiaIncrementoField.getText()),
-                    Integer.parseInt(dosisComidaFinalField.getText())
+                    Integer.parseInt(dosisComidaFinalField.getText()),
+                    estrategiaComida
             );
             gestor.getExperimentoActual().agregarPoblacion(poblacion);
             experimentoLista.actualizarLista();
