@@ -59,7 +59,27 @@ public class InterfazMontecarlo extends JFrame {
     }
 
     private void actualizarPanelPlato() {
-
+        int[][] bacterias = simulacion.getBacteriasUltimoDia();
+        for (int fila = 0; fila < bacterias.length; fila++) {
+            for (int columna = 0; columna < bacterias[fila].length; columna++) {
+                celdas[fila][columna].setBackground(getColorBacterias(bacterias[fila][columna]));
+            }
+        }
     }
 
+    private Color getColorBacterias(int numBacterias) {
+        if (numBacterias >= 20) {
+            return Color.RED;
+        } else if (numBacterias >= 15) {
+            return Color.MAGENTA;
+        } else if (numBacterias >= 10) {
+            return Color.ORANGE;
+        } else if (numBacterias >= 5) {
+            return Color.YELLOW;
+        } else if (numBacterias >= 1) {
+            return Color.GREEN;
+        } else {
+            return Color.WHITE;
+        }
+    }
 }
