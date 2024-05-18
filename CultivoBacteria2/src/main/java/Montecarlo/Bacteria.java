@@ -12,7 +12,14 @@ public class Bacteria {
 
     }
     public void comer(){
-
+        int comidaDisponible = celdaActual.getComida();
+        if (comidaDisponible >= 100) {
+            celdaActual.setComida(comidaDisponible - 20);
+            this.comidaIngerida += 20;
+        } else if (comidaDisponible > 9) {
+            celdaActual.setComida(comidaDisponible - 10);
+            this.comidaIngerida += 10;
+        }
     }
     public void reproducir(){
 
