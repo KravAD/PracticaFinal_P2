@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CultivoBacteria2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CultivoBacteria2_jar</output-path>
+    <root id="archive" name="CultivoBacteria2.jar">
+      <element id="module-output" name="CultivoBacteria2" />
+    </root>
+  </artifact>
+</component>
