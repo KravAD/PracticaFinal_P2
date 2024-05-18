@@ -12,8 +12,8 @@ public class GestorExperimentos {
         this.experimentoActual = null;
     }
 
-    public void crearExperimento() {
-        this.experimentoActual = new Experimento();
+    public void crearExperimento(Experimento experimento) {
+        this.experimentoActual = experimento;
     }
 
     public void abrirExperimento() throws IOException, ClassNotFoundException {

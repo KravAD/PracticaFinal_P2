@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import Logica.GestorExperimentos;
 import Logica.PoblacionBacterias;
 
@@ -41,7 +44,18 @@ public class Interfaz extends JFrame {
 
 
         createExperimentButton.addActionListener(e -> {
-            gestor.crearExperimento();
+            Map<String, EstrategiaComida> estrategiasComida = new HashMap<>();
+            estrategiasComida.put("EstrategiaComidaConstante", new EstrategiaComidaConstante());
+            estrategiasComida.put("EstrategiaComidaLineal", new EstrategiaComidaLineal());
+            estrategiasComida.put("EstrategiaComidaAlternante", new EstrategiaComidaAlternante());
+
+            String estrategiaSeleccionada = (String) JOptionPane.showInputDialog(null, "Selecciona una estrategia de comida:", "Creación de Experimento", JOptionPane.QUESTION_MESSAGE, null, estrategiasComida.keySet().toArray(), estrategiasComida.keySet().toArray()[0]);
+            EstrategiaComida estrategiaComida = estrategiasComida.get(estrategiaSeleccionada);
+
+            Experimento experimento = new Experimento(estrategiaComida);
+
+            gestor.crearExperimento(experimento);
+
             new ExperimentoFrame(gestor).setVisible(true);
         });
 
