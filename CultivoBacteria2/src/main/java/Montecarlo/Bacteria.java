@@ -22,7 +22,17 @@ public class Bacteria {
         }
     }
     public void reproducir(){
-
+        if (comidaIngerida >= 150) {
+            for (int i = 0; i < 3; i++) {
+                celdaActual.getBacterias().add(new Bacteria());
+            }
+        } else if (comidaIngerida >= 100) {
+            for (int i = 0; i < 2; i++) {
+                celdaActual.getBacterias().add(new Bacteria());
+            }
+        } else if (comidaIngerida >= 50) {
+            celdaActual.getBacterias().add(new Bacteria());
+        }
     }
 
 }
